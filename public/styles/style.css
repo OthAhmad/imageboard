@@ -1,0 +1,89 @@
+*,
+::after,
+::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.pic {
+    width: 200px;
+    height: 200px;
+}
+
+.pic-container {
+    padding: 40px;
+}
+
+#imageboard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    height: 90%;
+    width: 80%;
+    background: #fff;
+}
+
+.modal-img {
+    height: 100%;
+    width: 65%;
+}
+
+.modal-info {
+    float: right;
+    width: 32%;
+    height: 100%;
+    margin: 0 1.5%;
+    position: relative;
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+.icon.right::before {
+    content: "\f054";
+}
+
+.icon.left::before {
+    content: "\f053";
+}
+
+.left.icon,
+.right.icon {
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+i.icon {
+    display: inline-block;
+    opacity: 1;
+    margin: 0em 0.25rem 0em 0em;
+    width: 1.18em;
+    height: 1em;
+    font-family: "Icons";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+}
+
+.icon::before {
+    background: none !important;
+}

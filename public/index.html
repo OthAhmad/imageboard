@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+
+</head>
+<body>
+        <div id="main">
+             <first-component v-on:closepopup="doclosepopup" v-if="imageid" :imageid="imageid"></first-component>
+            <div id="main-form">
+                <div>
+                    <form>
+                        <p>Username:</p>
+                        <input v-model="form.username">
+                        <p>Title:</p>
+                        <input v-model="form.title">
+                        <p>Description:</p>
+                        <input v-model="form.description">
+                        <input id="file" type="file" accept="image/*">
+                        <button @click="uploadFile">Upload</button>
+                    </form>
+                </div>
+
+                <div id="imageboard">
+                    <div v-if="images.length" v-for="image in images" class="pic-container">
+                        <a :href="'#' + image.id">
+                            <img :src="image.url" class="pic" />
+                        </a>
+                        <p>{{image.title}}</p>
+                    </div>
+                </div>
+            </div>
+            <button v-if="images.length && images[images.length - 1].id > lowestid" @click="moreImages">More</button>
+        </div>
+
+
+            <script id="pop-up" type="text/x-template">
+                <div class="modal" @click.self="closePopUp">
+                    <i class="left icon" v-if="nextid != null" @click="previousimage"></i>
+                    <div class="modal-content">
+                        <img :src="image.url" class="modal-img">
+                        <second-component :imageid="imageid" :image="image"></second-component>
+                    </div>
+                    <i class="right icon"  v-if="previousid != null" @click="nextimage"></i>
+                    </div>
+            </script>
+            <script id="comments" type="text/x-template">
+                <div class="modal-info">
+                        <h2>{{image.title}}</h2>
+                        <p>{{image.description}}</p>
+                        <p>posted by <span class="bold">{{image.username}}</span></p>
+                        <input id="add-comment" v-model="comment"  placeholder="Add a comment..."/>
+                        <input  v-model="username"  placeholder="Username">
+                        <button  @click="submitComment">Post</button>
+                        <p v-if="comments.length" v-for="comment in comments"><span>{{comment.username}}</span> {{comment.comment}}</p>
+                </div>
+            </script>
+
+    <script src="/js/vue.js"></script>
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
